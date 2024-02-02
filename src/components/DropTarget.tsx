@@ -1,10 +1,17 @@
-import React from "react";
+import { ReactNode } from "react";
 import { useDrop } from "react-dnd";
+import { Item } from "../App";
 
-const DropTarget = ({ onDrop, children }) => {
+const DropTarget = ({
+  onDrop,
+  children,
+}: {
+  onDrop: (item: Item) => void;
+  children: ReactNode;
+}) => {
   const [, drop] = useDrop({
     accept: "ITEM",
-    drop: (item) => onDrop(item),
+    drop: (item: Item) => onDrop(item),
   });
 
   return (

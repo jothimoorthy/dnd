@@ -1,8 +1,7 @@
 // DraggableItem.js
-import React from "react";
 import { useDrag } from "react-dnd";
-
-const DraggableItem = ({ id, text }) => {
+import { Item } from "../App";
+const DraggableItem = ({ id, text }: Item) => {
   const [{ isDragging }, drag, preview] = useDrag({
     type: "ITEM",
     item: { id, text },

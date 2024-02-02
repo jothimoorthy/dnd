@@ -1,17 +1,20 @@
 // App.js
-import React, { useState } from "react";
+import { useState } from "react";
 import DraggableItem from "./components/DraggableItem";
 import DropTarget from "./components/DropTarget";
-
+export type Item = {
+  id: string;
+  text: string;
+};
 function App() {
-  const [draggedItems, setDraggedItems] = useState([]);
-  const [initialItems, setInitialItems] = useState([
+  const [draggedItems, setDraggedItems] = useState<Item[]>([]);
+  const [initialItems, setInitialItems] = useState<Item[]>([
     { id: "1", text: "Item 1" },
     { id: "2", text: "Item 2" },
     { id: "3", text: "Item 3" },
   ]);
 
-  const handleDrop = (item) => {
+  const handleDrop = (item: Item) => {
     if (draggedItems.find((i) => i.id === item.id)) return;
     const updated = [...draggedItems, item].sort((a, b) =>
       a.id.localeCompare(b.id)
@@ -21,7 +24,7 @@ function App() {
     setInitialItems(initial);
   };
 
-  const handleDropInitial = (item) => {
+  const handleDropInitial = (item: Item) => {
     if (initialItems.find((i) => i.id === item.id)) return;
     const updated = [...initialItems, item].sort((a, b) =>
       a.id.localeCompare(b.id)
